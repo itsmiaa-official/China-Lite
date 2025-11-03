@@ -5,7 +5,7 @@ global.owner = ["573243768166"]; //Cambia este número por el tuyo
 global.owner2 = ["https://wa.me/573243768166"] //cambialo por tu enlace
 global.sessionName = "star_session";
 global.version = "v1.0.0 | Mini";
-global.namebot = "⚞⭐̶𑂳ׅᭃֺ๋ᰍׅ(𝐒)ִ𝕋𝐀ֹℝ𝐋𝕀𝐆𝐇ℍ𝐓𝕊ִ༷̫֠⚟";
+global.namebot = "𝐃𝐫𝐚𝐜𝐮𝐥𝐚𝐮𝐫𝐚-𝐖𝐚 🦇";
 global.author = "𝕮𝖍𝖎𝖓𝖆 🔥";
 global.dev = "© 𝖯𝗈𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 𝖢𝖧𝖨𝖭𝖨𝖳𝖠 | ᵒᶠᶦᶜᶦᵃˡ"
 
