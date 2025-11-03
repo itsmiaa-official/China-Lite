@@ -75,7 +75,7 @@ Librería: 𝖡𝖺𝗂𝗅𝖾𝗒𝗌 𝗠𝗗
             thumbnailUrl: "https://files.catbox.moe/e1lirs.jpg", // imagen de vista previa
             sourceUrl: "https://starlights.vercel.app", // link de tu canal o página
             mediaType: 1,
-            renderLargerThumbnail: true,
+            renderLargerThumbnail: false,
           },
         },
       },
