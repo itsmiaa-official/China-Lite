@@ -7,7 +7,7 @@
 
 ---
 
-### Características
+### 𝐂𝐚𝐫𝐚𝐜𝐭𝐞𝐫𝐢́𝐬𝐭𝐢𝐜𝐚𝐬
 
 - Código de emparejamiento
 - Comandos generales básicos 
@@ -17,7 +17,7 @@
 
 ---
 
-### Requisitos
+### 𝐑𝐞𝐪𝐮𝐢𝐬𝐢𝐭𝐨𝐬
 
 - Git  
 - Node.js
@@ -30,7 +30,7 @@ Descargas rápidas:
 
 ---
 
-### Instalación
+### 𝐈𝐧𝐬𝐭𝐚𝐥𝐚𝐜𝐢𝐨́𝐧
 
 #### Linux / Termux / Ubuntu
 
@@ -43,7 +43,7 @@ yarn install
 npm install
 node index.js
 ```
-### **`𝗣𝗿𝗼𝗽𝗶𝗲𝘁𝗮𝗿𝗶𝗮`**
+### **`𝐏𝐫𝐨𝐩𝐢𝐞𝐭𝐚𝐫𝐢𝐚`**
 <a
 href="https://github.com/ittschinitaaa"><img src="https://github.com/ittschinitaaa.png" width="130" height="130" alt="
 mі́ᥲ|᥆𝖿іᥴіᥲᥣ𒆜"/></a>
