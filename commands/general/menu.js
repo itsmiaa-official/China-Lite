@@ -138,7 +138,7 @@ ${saludo}, 𝖲𝗈𝗒 ${namebot}
             title: `${namebot}`,
           //  body: `${dev}`,
             thumbnailUrl: "https://files.catbox.moe/psvfzq.jpg", 
-            sourceUrl: "https://draculaura.vercel.app", 
+          //  sourceUrl: "https://draculaura.vercel.app", 
             mediaType: 1,
             renderLargerThumbnail: false,
           },
