@@ -1,16 +1,12 @@
 const moment = require("moment-timezone");
-//const { version } = require("../../package.json");
 
 module.exports = {
   command: ["menu", "help", "ayuda"],
-  description: "Muestra la lista de comandos del bot",
+  description: "Muestra el menú principal con video o gif",
   category: "general",
   run: async (client, m, args) => {
-    const cmds = [...global.comandos.values()];
-
-    // Saludo según hora
     const jam = moment.tz("America/Argentina/Buenos_Aires").format("HH:mm:ss");
-    const ucapan =
+    const saludo =
       jam < "05:00:00"
         ? "🌙 Buen día"
         : jam < "11:00:00"
@@ -21,74 +17,65 @@ module.exports = {
         ? "🌆 Buenas tardes"
         : "🌙 Buenas noches";
 
-    // Contacto citado
+    // contacto citado (para que aparezca como reenviado)
     const fkontak = {
       key: {
-        participant: `0@s.whatsapp.net`,
-        ...(m.chat ? { remoteJid: `0@s.whatsapp.net` } : {}),
+        participant: "0@s.whatsapp.net",
+        ...(m.chat ? { remoteJid: "status@broadcast" } : {}),
       },
       message: {
         contactMessage: {
           displayName: `${m.pushName || "Usuario"}`,
-          vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${m.pushName || "Usuario"},;;;\nFN:${m.pushName || "Usuario"}\nitem1.TEL;waid=${
+          vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${m.pushName || "Usuario"};;;\nFN:${m.pushName || "Usuario"}\nitem1.TEL;waid=${
             m.sender.split("@")[0]
           }:${m.sender.split("@")[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
         },
       },
     };
 
-    // Organizar comandos por categoría
-    const categories = {};
-    cmds.forEach((cmd) => {
-      if (!cmd.command) return;
-      const cat = (cmd.category || "sin categoría").toLowerCase();
-      if (!categories[cat]) categories[cat] = [];
-      if (!categories[cat].some((c) => c.command[0] === cmd.command[0])) {
-        categories[cat].push(cmd);
-      }
-    });
+    // 🌟 acá podés escribir el texto del menú como quieras:
+    const textoMenu = `
+${saludo}, *${m.pushName || "Usuario"}* 💫
 
-      await m.react("🌟");
-    
-    let menu = `
-✼─────────────✼
-${ucapan}, *${m.pushName || "Usuario"}*
-✿ 𝗕𝗶𝗲𝗻𝘃𝗲𝗻𝗶𝗱@ ${global.namebot}
-✿ 𝗩𝗲𝗿𝘀𝗶𝗼𝗻: ${version}
-✿ 𝗗𝘂𝗲𝗻̃𝗮: ${owner2}
-✿ 𝗟𝗶𝗯𝗿𝗲𝗿𝗶𝗮: 𝖡𝖺𝗂𝗅𝖾𝗒𝗌 𝖬𝗎𝗅𝗍𝗂 𝖣𝖾𝗏𝗂𝖼𝖾
-✼─────────────✼\n`;
+✦ Bienvenid@ a *Starlights Bot*  
+Creadora: 𝕮𝖍𝖎𝖓𝖆 💋  
+Versión: 1.0.0  
+Librería: 𝖡𝖺𝗂𝗅𝖾𝗒𝗌 𝗠𝗗  
 
-    for (const [cat, commands] of Object.entries(categories)) {
-      const catName = cat.charAt(0).toUpperCase() + cat.slice(1);
-      menu += `╭──★ *${catName}* ★──╮\n`;
-      commands.forEach((cmd) => {
-        menu += `│ • #${cmd.command[0]}\n`;
-      });
-      menu += `╰────────────╯\n\n`;
-    }
+📜 *Menú principal:*  
+• #info  
+• #grupos  
+• #herramientas  
+• #descargas  
+• #owner  
 
-    menu += `> ${dev}`;
+> © 2025 Starlights ✦
+`.trim();
+
+    // 🌌 URL de tu video o gif (MP4 recomendado)
+    const videoUrl = "https://files.catbox.moe/j3q1nh.mp4"; // <-- Cambialo por tu link
 
     await client.sendMessage(
       m.chat,
       {
-        text: menu,
+        video: { url: videoUrl },
+        caption: textoMenu,
+        gifPlayback: true, // hace que se repita como gif si es corto
         contextInfo: {
-          forwardingScore: 0,
+          forwardingScore: 1,
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
             newsletterJid: "120363345778623279@newsletter", // tu canal
             serverMessageId: "1",
-            newsletterName: "=͟͟͞͞𝐒𝐩𝐚𝐜𝐞 𝐖𝐨𝐫𝐥𝐝 - 𝐎𝐟𝐟𝐢𝐜𝐢𝐚𝐥 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ✰",
+            newsletterName: "🌟 Starlights Channel",
           },
           externalAdReply: {
             title: "⭑ 𝗦𝘁𝗮𝗿𝗹𝗶𝗴𝗵𝘁𝘀 - 𝗕𝗼𝘁 🌟",
-            body: "Starlights, creado con amor por 𝕮𝖍𝖎𝖓𝖆 🔥",
-            thumbnailUrl: "https://files.catbox.moe/e1lirs.jpg", // tu imagen actual
-            sourceUrl: "https://starlights.vercel.app", // tu página o canal
+            body: "Creado con amor por 𝕮𝖍𝖎𝖓𝖆 💫",
+            thumbnailUrl: "https://files.catbox.moe/e1lirs.jpg", // imagen de vista previa
+            sourceUrl: "https://starlights.vercel.app", // link de tu canal o página
             mediaType: 1,
-            renderLargerThumbnail: true, // hace que se vea como “tarjeta grande”
+            renderLargerThumbnail: true,
           },
         },
       },
