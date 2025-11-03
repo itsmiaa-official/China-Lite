@@ -1,6 +1,8 @@
 const fs = require("fs");
 const chalk = require("chalk");
 
+//*─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ*
+
 global.owner = ["573243768166"]; //Cambia este número por el tuyo
 global.owner2 = ["https://wa.me/573243768166"] //cambialo por tu enlace
 global.sessionName = "star_session";
@@ -9,6 +11,7 @@ global.namebot = "𝐃𝐫𝐚𝐜𝐮𝐥𝐚𝐮𝐫𝐚-𝐖𝐚 🦇";
 global.author = "𝕮𝖍𝖎𝖓𝖆 🔥";
 global.dev = "© 𝖯𝗈𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 𝖢𝖧𝖨𝖭𝖨𝖳𝖠 | ᵒᶠᶦᶜᶦᵃˡ"
 
+//*─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ*
 //Modifica los mensajes a tu preferencia
 global.mess = {
   admin: "> ☆ Esta función está reservada para los administradores del grupo",
@@ -19,10 +22,12 @@ global.mess = {
   wait: "> ☆ Espera un momento...",
 };
 
+//*─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ*
+
 global.thumbnailUrl = "https://files.catbox.moe/sklz18.png"; //Cambia esta imagen
 
 global.my = {
-  ch: "120363400593383200@newsletter", //Cambia este id por el de tu canal
+  ch: "", //Cambia este id por el de tu canal
 };
 
 let file = require.resolve(__filename);
