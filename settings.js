@@ -5,7 +5,7 @@ const chalk = require("chalk");
 
 global.owner = ["573243768166"]; //Cambia este número por el tuyo
 global.owner2 = ["https://wa.me/573243768166"] //cambialo por tu enlace
-global.sessionName = "star_session";
+global.sessionName = "Sessions/Principal";
 global.version = "v1.0.0 | Mini";
 global.namebot = "𝐃𝐫𝐚𝐜𝐮𝐥𝐚𝐮𝐫𝐚-𝐖𝐚 🦇";
 global.author = "𝕮𝖍𝖎𝖓𝖆 🔥";
@@ -24,7 +24,7 @@ global.mess = {
 
 //*─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ*
 
-global.thumbnailUrl = "https://files.catbox.moe/sklz18.png"; //Cambia esta imagen
+global.thumbnailUrl = "https://files.catbox.moe/1zzaug.jpg"; //Cambia esta imagen
 
 global.my = {
   ch: "120363345778623279@newsletter", //Cambia este id por el de tu canal
