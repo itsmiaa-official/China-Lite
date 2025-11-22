@@ -132,7 +132,7 @@ ${saludo}, 𝖲𝗈𝗒 ${namebot}
           forwardedNewsletterMessageInfo: {
             newsletterJid: my.ch,
             serverMessageId: "1",
-            newsletterName: my.name,
+            newsletterName: my.name1,
           },
           externalAdReply: {
             title: `${namebot}`,
