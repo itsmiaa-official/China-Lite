@@ -24,10 +24,10 @@ module.exports = {
       hour12: false,
     });
 
-    const info = `𝐒𝐭𝐚𝐫𝐥𝐢𝐠𝐡𝐭𝐬 - 𝐂𝐡𝐢𝐧𝐚 🇨🇳
+    const info = `${botname} - ${author}
 
 *Versión:* ${pkg.version}
-*Autor:* 𝐂𝐡𝐢𝐧𝐚 | 𝐒𝐭𝐚𝐫𝐥𝐢𝐠𝐡𝐭𝐬
+*Autor:* ${botname}
 *Uptime:* ${h}h ${min}m ${s}s
 *Plataforma:* ${platform}
 *Node.js:* ${nodeV}
@@ -42,7 +42,7 @@ module.exports = {
     await client.sendMessage(
       m.chat,
       {
-        image: { url: "https://files.catbox.moe/sklz18.png" },
+        image: thumbnailUrl, //{ url: "https://files.catbox.moe/sklz18.png" },
         caption: info,
       },
       { quoted: m },
