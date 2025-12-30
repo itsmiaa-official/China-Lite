@@ -16,7 +16,7 @@ module.exports = {
       year: "numeric",
     });
 
-    let stickerTxT2 = "- 🌟ᩧ　ׅ　ׄ　⁞⁞ 𝐒𝕋𝐀ℝ𝐋𝕀𝐆ℍ𝐓S\n";
+    let stickerTxT2 = ``;
     let stickerTxT = `${dev}`;
     
     if (/image/.test(mime)) {
