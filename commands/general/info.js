@@ -52,9 +52,9 @@ module.exports = {
             title: namebot,  // Título de la tarjeta
             body: textbot,       // Subtítulo o descripción
             mediaType: 1,                    // Imagen o video
-            mediaUrl: catalogo,              // URL de la imagen que quieras mostrar
-            sourceUrl: catalogo,             // Link que se abre al tocar la tarjeta
-            thumbnailUrl: catalogo,          // Miniatura
+            mediaUrl: icono,              // URL de la imagen que quieras mostrar
+            sourceUrl: icono,             // Link que se abre al tocar la tarjeta
+            thumbnailUrl: icono,          // Miniatura
             showAdAttribution: false,
             containsAutoReply: true,
             renderLargerThumbnail: false,
