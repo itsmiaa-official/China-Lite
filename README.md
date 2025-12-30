@@ -3,9 +3,9 @@
 
 ---
 
-`✰ 𝗙𝘂𝗻𝗰𝗶𝗼𝗻𝗲𝘀 𝗱𝗲 𝗹𝗮 𝗯𝗼𝘁.`
+`✰ 𝗙𝗨𝗡𝗖𝗜𝗢𝗡𝗘𝗦 𝗗𝗘 𝗟𝗔 𝗕𝗢𝗧:`
 
-*Conexión WhatsApp Multi-Device (Baileys)*
+- *Conexión WhatsApp Multi-Device (Baileys)*
 
 - *Comandos de administración de grupos*
 
