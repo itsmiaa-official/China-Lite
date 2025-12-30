@@ -132,7 +132,7 @@ fs.watchFile(mainFile, () => {
   fs.unwatchFile(mainFile);
   console.log(
     chalk.yellowBright(
-      `\nSe actualizó ${path.basename(__filename)}, recargando...`,
+      `\nSe actualizó ${path.basename(__filename)}, recargando....`,
     ),
   );
   delete require.cache[mainFile];
