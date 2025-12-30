@@ -1,6 +1,5 @@
-> **⚠️ IMPORTANTE:**
-> *Este bot se encuentra actualmente en proceso de actualización y evolución constante.
-Es posible que durante este tiempo se presenten algunos errores, los cuales serán corregidos lo antes posible.*
+> **⚠️ IMPORTANTE:Este bot se encuentra actualmente en proceso de actualización y evolución constante.
+Es posible que durante este tiempo se presenten algunos errores, los cuales serán corregidos lo antes posible.**
 ---
 
 `✰ 𝗙𝗨𝗡𝗖𝗜𝗢𝗡𝗘𝗦 𝗗𝗘 𝗟𝗔 𝗕𝗢𝗧:`
