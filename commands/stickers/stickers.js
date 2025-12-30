@@ -16,7 +16,7 @@ module.exports = {
       year: "numeric",
     });
 
-    let stickerTxT2 = `✨ 𝐒𝐓𝐈𝐂𝐊𝐄𝐑𝐒 ✨ - ${namebot}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`;
+    let stickerTxT2 = `💋 𝐒𝐓𝐈𝐂𝐊𝐄𝐑𝐒 💋 - ${namebot}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`;
     let stickerTxT = `Owner: ${author}\n• Dueña: @its.chinitaaa_`;
     
     if (/image/.test(mime)) {
