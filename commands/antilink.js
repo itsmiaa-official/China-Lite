@@ -29,7 +29,7 @@ module.exports = async (client, m) => {
       if (isGcLink) {
         return client.sendMessage(
           m.chat,
-          { text: `El enlace *pertenece* a este grupo.` },
+          { text: `El enlace *pertenece* a este grupo...` },
           { quoted: m },
         );
       }
