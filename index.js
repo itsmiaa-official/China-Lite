@@ -25,6 +25,7 @@ const print = (label, value) =>
   console.log(
     `${chalk.green.bold("║")} ${chalk.cyan.bold(label.padEnd(16))}${chalk.magenta.bold(":")} ${value}`,
   );
+
 const question = (text) => {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -34,6 +35,7 @@ const question = (text) => {
     rl.question(text, resolve);
   });
 };
+
 const usePairingCode = true;
 
 const log = {
@@ -41,10 +43,7 @@ const log = {
   success: (msg) =>
     console.log(chalk.bgGreen.white.bold(`SUCCESS`), chalk.greenBright(msg)),
   warn: (msg) =>
-    console.log(
-      chalk.bgYellowBright.blueBright.bold(`WARNING`),
-      chalk.yellow(msg),
-    ),
+    console.log(chalk.bgYellowBright.blueBright.bold(`WARNING`), chalk.yellow(msg)),
   warning: (msg) =>
     console.log(chalk.bgYellowBright.red.bold(`WARNING`), chalk.yellow(msg)),
   error: (msg) =>
@@ -88,11 +87,16 @@ print(
 console.log(chalk.yellow.bold("╚" + "═".repeat(30)));
 
 async function startBot() {
-  const { state, saveCreds } = await useMultiFileAuthState(global.sessionName);
+  // --- Path seguro para la sesión ---
+  const sessionPath = path.join(__dirname, "Sessions", global.sessionName);
+  if (!fs.existsSync(sessionPath)) fs.mkdirSync(sessionPath, { recursive: true });
+
+  const { state, saveCreds } = await useMultiFileAuthState(sessionPath);
   const { version } = await fetchLatestBaileysVersion();
 
   console.info = () => {};
   console.debug = () => {};
+
   const client = makeWASocket({
     version,
     logger: pino({ level: "silent" }),
@@ -108,7 +112,7 @@ async function startBot() {
     );
     try {
       log.info("Solicitando código de emparejamiento...");
-      const pairing = await client.requestPairingCode(phoneNumber, "S1T2A3R4"); 
+      const pairing = await client.requestPairingCode(phoneNumber, "S1T2A3R4");
       log.success(
         `Código de emparejamiento: ${chalk.cyanBright(pairing)} (expira en 15s)`,
       );
@@ -130,9 +134,7 @@ async function startBot() {
     if (connection === "close") {
       const reason = new Boom(lastDisconnect?.error)?.output.statusCode;
       if (reason === DisconnectReason.connectionLost) {
-        log.warning(
-          "Se perdió la conexión al servidor, intento reconectarme..",
-        );
+        log.warning("Se perdió la conexión al servidor, intento reconectarme..");
         startBot();
       } else if (reason === DisconnectReason.connectionClosed) {
         log.warning("Conexión cerrada, intentando reconectarse...");
@@ -202,6 +204,7 @@ async function startBot() {
 }
 
 startBot();
+
 let file = require.resolve(__filename);
 fs.watchFile(file, () => {
   fs.unwatchFile(file);
@@ -209,4 +212,3 @@ fs.watchFile(file, () => {
   delete require.cache[file];
   require(file);
 });
-
