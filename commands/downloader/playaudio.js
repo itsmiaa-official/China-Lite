@@ -72,7 +72,7 @@ module.exports = {
             thumbnail: thumb,
             mediaUrl: url,
             sourceUrl: url,
-            renderLargerThumbnail: true
+            renderLargerThumbnail: false, 
           }
         }
       }, { quoted: m });
