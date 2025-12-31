@@ -6,7 +6,7 @@ module.exports = {
   isGroup: true,
   botAdmin: true,
   run: async (client, m, args) => {
-    const ownerNumber = "573243768166@s.whatsapp.net";
+    const ownerNumber = `${owner}`;
     if (m.sender !== ownerNumber) {
       return m.reply("❌ Este comando solo puede usarlo mi creadora Mía 😼");
     }
