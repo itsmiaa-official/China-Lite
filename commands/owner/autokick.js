@@ -1,6 +1,3 @@
-// comando kick2.js
-// El creador puede expulsar a un miembro sin ser admin
-
 module.exports = {
   command: ["kick2"],
   description: "El creador puede expulsar a un miembro sin ser admin",
