@@ -1,15 +1,16 @@
+// comando kick2.js
+// El creador puede expulsar a un miembro sin ser admin
+
 module.exports = {
   command: ["kick2"],
   description: "El creador puede expulsar a un miembro sin ser admin",
   category: "owner",
   isGroup: true,
   botAdmin: true,
+  isOwner: true, // esto hace que el main valide con global.isOwner
 
   run: async (client, m, args) => {
-    if (!global.owner.includes(m.sender)) {
-      return m.reply("❌ Este comando solo puede usarlo mi creadora Mía 😼");
-    }
-
+    // Verificación de usuario objetivo
     if (!m.mentionedJid?.[0] && !m.quoted) {
       return m.reply("⚠️ Etiqueta o responde al usuario que quieres expulsar.");
     }
