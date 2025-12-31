@@ -1,4 +1,4 @@
-require("../settings"); // ajusta la ruta si es necesario
+require("../settings.js"); // ajusta la ruta si es necesario
 
 module.exports = {
   command: ["kick2"],
