@@ -1,4 +1,78 @@
-const moment = require("moment-timezone");
+const fs = require('fs');
+
+module.exports = {
+  command: ['menu', 'menú', 'help', 'comandos', 'commands'],
+  description: 'Muestra todos los comandos del bot en un solo menú',
+  category: 'main',
+  run: async (client, m, args, { prefix }) => {
+    try {
+      const username = m.pushName || m.sender.split('@')[0];
+
+      // Cargar imágenes del menú
+      const menuImages = ['menu.jpg', 'menu2.jpg'];
+      let existingImages = [];
+      for (let imgName of menuImages) {
+        const imgPath = `./src/${imgName}`;
+        if (fs.existsSync(imgPath)) existingImages.push(imgPath);
+      }
+
+      // Elegir imagen aleatoria o usar icono global
+      let menuImage = global.icono;
+      if (existingImages.length > 0) {
+        const randomIndex = Math.floor(Math.random() * existingImages.length);
+        menuImage = fs.readFileSync(existingImages[randomIndex]);
+      }
+
+      // Información general del bot
+      const totalUsers = Object.keys(global.db.data.users).length;
+      const totalCommands = Object.keys(global.plugins || {}).length;
+
+      // Texto completo del menú
+      const menuText = `
+「💙」 ¡Hola! *${username}*, Soy *${namebot}*
+> Aquí tienes la lista de comandos.
+
+╭┈ ↷
+│❀ 𝗠𝗼𝗱𝗼 » Público
+│ᰔ 𝗧𝗶𝗽𝗼 » principal
+╰─────────────────
+
+*COMANDOS DISPONIBLES:*
+
+• #ping
+• #help
+      `.trim();
+
+      // Enviar el menú
+      await client.sendMessage(
+        m.chat,
+        {
+          image: menuImage,
+          caption: menuText,
+          contextInfo: {
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+              newsletterJid: my.ch,
+              serverMessageId: '',
+              newsletterName: my.name1
+            }
+          }
+        },
+        { quoted: m }
+      );
+
+    } catch (e) {
+      await client.sendMessage(
+        m.chat,
+        { text: `✰ Error en el menú:\n${e}` },
+        { quoted: m }
+      );
+    }
+  }
+};
+
+
+/*const moment = require("moment-timezone");
 
 module.exports = {
   command: ["help", "ayuda", "menu"],
@@ -6,18 +80,6 @@ module.exports = {
   category: "general",
   run: async (conn, m, args) => {
     const cmds = [...global.comandos.values()];
-
-    const jam = moment.tz("America/Argentina/Buenos_Aires").format("HH:mm:ss");
-   /* const ucapan =
-      jam < "05:00:00"
-        ? "🄱uen 🄳ía 🌞"
-        : jam < "11:00:00"
-        ? "🄱uen 🄳ía 🌞"
-        : jam < "15:00:00"
-        ? "🄱uenas 🅃ardes 🌄"
-        : jam < "19:00:00"
-        ? "🄱uenas 🅃ardes 🌄"
-        : "🄱uenas 🄽oches 🌛";*/
 
     const userId = m.sender;
 
@@ -82,3 +144,4 @@ module.exports = {
     );
   },
 };
+*/
