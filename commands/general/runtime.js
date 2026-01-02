@@ -15,12 +15,12 @@ module.exports = {
     const seconds = Math.floor(uptime % 60);
 
     const runtimeText = `
-⏱️ *TIEMPO ACTIVO DEL BOT*
+⏱️ *𝗧𝗜𝗘𝗠𝗣𝗢 𝗔𝗖𝗧𝗜𝗩𝗢 𝗗𝗘 𝗟𝗔 𝗕𝗢𝗧*
 
-🗓️ \`Días\` : ${days}
-🕒 \`Horas\` : ${hours}
-⏰ \`Minutos\` : ${minutes}
-⏱️ \`Segundos\` : ${seconds}
+> 🗓️ \`Días\` : ${days}
+> 🕒 \`Horas\` : ${hours}
+> ⏰ \`Minutos\` : ${minutes}
+> ⏱️ \`Segundos\` : ${seconds}
 
 🤖 Estado: *Online*
 `.trim();
