@@ -31,7 +31,7 @@ module.exports = {
         text: runtimeText,
         contextInfo: {
           externalAdReply: {
-            title: botName,
+            title: namebot,
             body: "Tiempo activo en ejecución",
             mediaType: 1,
             thumbnailUrl: catalogo, // puedes cambiarla
