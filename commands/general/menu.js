@@ -2,6 +2,90 @@ const fs = require('fs');
 
 module.exports = {
   command: ['menu', 'menú', 'help', 'comandos', 'commands'],
+  description: 'Muestra todos los comandos del bot en estilo tarjeta',
+  category: 'main',
+  run: async (client, m, args, { prefix }) => {
+    try {
+      const username = m.pushName || m.sender.split('@')[0];
+
+      await m.react('⏳'); // Reacción de carga
+
+      // Imagen del menú
+      const menuImages = ['menu.jpg', 'menu2.jpg'];
+      let existingImages = [];
+      for (let imgName of menuImages) {
+        const imgPath = `./src/${imgName}`;
+        if (fs.existsSync(imgPath)) existingImages.push(imgPath);
+      }
+
+      let menuImage = global.icono;
+      if (existingImages.length > 0) {
+        const randomIndex = Math.floor(Math.random() * existingImages.length);
+        menuImage = fs.readFileSync(existingImages[randomIndex]);
+      }
+
+      // Información general
+      const totalUsers = Object.keys(global.db.data.users).length;
+      const totalCommands = Object.keys(global.plugins || {}).length;
+
+      const txt = `
+Hola, *${username}* 👋
+Soy *${namebot}*
+
+Usuarios: ${totalUsers.toLocaleString()}
+Comandos: ${totalCommands}
+Prefijo: ${prefix}
+
+> ✐ Powered By Arlette Xz
+`.trim();
+
+      // Enviar mensaje estilo tarjeta usando externalAdReply
+      await client.sendMessage(
+        m.chat,
+        {
+          text: txt,
+          contextInfo: {
+            mentionedJid: [m.sender],
+            externalAdReply: {
+              title: namebot,
+              body: 'Bot personalizado por Chinita 💖',
+              mediaType: 1,
+              mediaUrl: 'https://instagram.com/its.chinitaaa_',
+              sourceUrl: 'https://instagram.com/its.chinitaaa_',
+              thumbnailUrl: menuImage,
+              showAdAttribution: false,
+              containsAutoReply: true,
+              renderLargerThumbnail: true,
+            },
+            forwardingScore: 1,
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+              newsletterJid: my.ch,
+              serverMessageId: '1',
+              newsletterName: my.name1,
+            },
+          },
+        },
+        { quoted: m }
+      );
+
+      await m.react('✅'); // Confirmación
+
+    } catch (e) {
+      await client.sendMessage(
+        m.chat,
+        { text: `✰ Error en el menú:\n${e}` },
+        { quoted: m }
+      );
+    }
+  }
+};
+
+
+/*const fs = require('fs');
+
+module.exports = {
+  command: ['menu', 'menú', 'help', 'comandos', 'commands'],
   description: 'Muestra todos los comandos del bot en un solo menú',
   category: 'main',
   run: async (client, m, args, { prefix }) => {
@@ -69,7 +153,7 @@ module.exports = {
       );
     }
   }
-};
+};*/
 
 
 /*const moment = require("moment-timezone");
