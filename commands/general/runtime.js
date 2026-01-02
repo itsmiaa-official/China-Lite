@@ -1,13 +1,10 @@
-// Comando runtime estilo tarjeta 💫
-// Creado para Starlights / Mafia-Bot / estructura modular
-// By Chinita 💖
 
 const os = require("os");
 
 module.exports = {
   command: ["runtime", "uptime"],
   description: "Muestra el tiempo activo del bot",
-  category: "info",
+  category: "general",
 
   run: async (client, m) => {
     const uptime = process.uptime();
@@ -20,10 +17,10 @@ module.exports = {
     const runtimeText = `
 ⏱️ *TIEMPO ACTIVO DEL BOT*
 
-🗓️ Días: ${days}
-🕒 Horas: ${hours}
-⏰ Minutos: ${minutes}
-⏱️ Segundos: ${seconds}
+🗓️ \`Días\` : ${days}
+🕒 \`Horas\` : ${hours}
+⏰ \`Minutos\` : ${minutes}
+⏱️ \`Segundos\` : ${seconds}
 
 🤖 Estado: *Online*
 `.trim();
@@ -39,7 +36,7 @@ module.exports = {
             mediaType: 1,
             thumbnailUrl: catalogo, // puedes cambiarla
             sourceUrl: "https://github.com/miaoficial02",
-            renderLargerThumbnail: true
+            renderLargerThumbnail: false
           }
         }
       },
