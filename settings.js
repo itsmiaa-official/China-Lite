@@ -30,7 +30,7 @@ global.catalogo = "https://files.catbox.moe/riclwm.jpg";
 
 global.my = {
   ch: "120363345778623279@newsletter",
-  name1: "=͟͟͞͞𝕷𝖆 𝕮𝖍𝖎𝖓𝖆𝕸𝖎𝖙𝖟𝖚𝖐𝖎 💋 | ¡𝗡𝗲𝘄𝘀! 🔥", 
+  name1: "𝕮𝖍𝖎𝖓𝖆𝕸𝖎𝖙𝖟𝖚𝖐𝖎  (𝕷𝖎𝖙𝖊} | ¡𝗡𝗲𝘄𝘀 𝗨𝗽𝗱𝗮𝘁𝗲'𝘀!", 
 };
 
 let file = require.resolve(__filename);
