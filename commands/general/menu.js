@@ -6,20 +6,12 @@ module.exports = {
   category: "general",
   run: async (client, m, args, { prefix: _p }) => {
     try {
-      await m.react("⏳");
 
       const username = m.pushName || (await client.getName(m.sender)) || m.sender.split("@")[0];
 
-      // Imagen normal aleatoria
       const menuImages = ["menu.jpg", "menu2.jpg"];
       const existingImages = menuImages.filter(img => fs.existsSync(`./src/${img}`));
       const menuImage = fs.readFileSync(`./src/${existingImages[Math.floor(Math.random() * existingImages.length)]}`);
-
-      // Icono arriba
-      const icono = global.icono || null;
-
-      const totalUsers = Object.keys(global.db.data.users).length;
-      const totalCommands = Object.keys(global.plugins || {}).length;
 
       const txt = `
 > ✰ 𝖧𝗈𝗅𝖺 𝖲𝗈𝗒 *${namebot}*, 𝖤𝗌𝗍𝖺 𝖾𝗌 𝗆𝗂 𝗅𝗂𝗌𝗍𝖺 𝖽𝖾 𝖼𝗈𝗆𝖺𝗇𝖽𝗈𝗌...
@@ -97,7 +89,7 @@ module.exports = {
 ౨ৎ • #horario
 ౨ৎ • #letra
 
- > ${namebot} | ${author}
+> ${namebot} | ${author}
 
       `.trim();
 
@@ -109,8 +101,8 @@ module.exports = {
           contextInfo: {
             mentionedJid: [m.sender],
             externalAdReply: {
-              title: global.namebot || "Mi Bot",
-              body: global.textbot || "Bot personalizado",
+              title: namebot, 
+              body: textbot, 
               mediaType: 1,
               mediaUrl: "https://instagram.com/its.chinitaaa_",
               sourceUrl: "https://instagram.com/its.chinitaaa_",
@@ -130,8 +122,6 @@ module.exports = {
         },
         { quoted: m }
       );
-
-      await m.react("✅");
     } catch (e) {
       await client.sendMessage(m.chat, { text: `✰ Error en el menú:\n${e}` }, { quoted: m });
     }
