@@ -1,84 +1,75 @@
-const fs = require('fs');
+const fs = require("fs");
 
 module.exports = {
-  command: ['menu', 'menú', 'help', 'comandos', 'commands'],
-  description: 'Muestra todos los comandos del bot en estilo tarjeta',
-  category: 'main',
-  run: async (client, m, args, { prefix }) => {
+  command: ["menu", "menú", "help", "comandos", "commands"],
+  description: "Muestra todos los comandos del bot en estilo tarjeta",
+  category: "general",
+  run: async (client, m, args, { prefix: _p }) => {
     try {
-      const username = m.pushName || m.sender.split('@')[0];
+      await m.react("⏳");
 
-      await m.react('⏳'); // Reacción de carga
+      const username = m.pushName || (await client.getName(m.sender)) || m.sender.split("@")[0];
 
-      // Imagen del menú
-      const menuImages = ['menu.jpg', 'menu2.jpg'];
-      let existingImages = [];
-      for (let imgName of menuImages) {
-        const imgPath = `./src/${imgName}`;
-        if (fs.existsSync(imgPath)) existingImages.push(imgPath);
-      }
+      // Imagen normal aleatoria
+      const menuImages = ["menu.jpg", "menu2.jpg"];
+      const existingImages = menuImages.filter(img => fs.existsSync(`./src/${img}`));
+      const menuImage = fs.readFileSync(`./src/${existingImages[Math.floor(Math.random() * existingImages.length)]}`);
 
-      let menuImage = global.icono;
-      if (existingImages.length > 0) {
-        const randomIndex = Math.floor(Math.random() * existingImages.length);
-        menuImage = fs.readFileSync(existingImages[randomIndex]);
-      }
+      // Icono arriba
+      const icono = global.icono || null;
 
-      // Información general
       const totalUsers = Object.keys(global.db.data.users).length;
       const totalCommands = Object.keys(global.plugins || {}).length;
 
       const txt = `
-Hola, *${username}* 👋
-Soy *${namebot}*
+「💙」 ¡Hola! *${username}*, soy *${global.namebot || "Mi Bot"}*
 
-Usuarios: ${totalUsers.toLocaleString()}
-Comandos: ${totalCommands}
-Prefijo: ${prefix}
+> Aquí tienes la lista de comandos
 
-> ✐ Powered By Arlette Xz
-`.trim();
+❀ Prefijo: 
+❀ Usuarios: ${totalUsers.toLocaleString()}
+❀ Comandos: ${totalCommands}
+❀ Versión: ${global.vs || "1.0.0"}
+❀ Creador: ${global.etiqueta || "Chinita"}
 
-      // Enviar mensaje estilo tarjeta usando externalAdReply
+> ✐ Powered by Arlette Xz
+      `.trim();
+
       await client.sendMessage(
         m.chat,
         {
-          text: txt,
+          image: menuImage,
+          caption: txt,
           contextInfo: {
             mentionedJid: [m.sender],
             externalAdReply: {
-              title: namebot,
-              body: 'Bot personalizado por Chinita 💖',
+              title: global.namebot || "Mi Bot",
+              body: global.textbot || "Bot personalizado",
               mediaType: 1,
-              mediaUrl: 'https://instagram.com/its.chinitaaa_',
-              sourceUrl: 'https://instagram.com/its.chinitaaa_',
-              thumbnailUrl: banner,            
+              mediaUrl: "https://instagram.com/its.chinitaaa_",
+              sourceUrl: "https://instagram.com/its.chinitaaa_",
+              thumbnailUrl: icono,
               showAdAttribution: false,
               containsAutoReply: true,
-              renderLargerThumbnail: true,
+              renderLargerThumbnail: false,
             },
             forwardingScore: 1,
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
-              newsletterJid: my.ch,
-              serverMessageId: '1',
-              newsletterName: my.name1,
+              newsletterJid: global.my?.ch || "120363403176894973@newsletter",
+              serverMessageId: "1",
+              newsletterName: global.my?.name1 || "【 ✰ 】Canal Oficial",
             },
           },
         },
         { quoted: m }
       );
 
-      await m.react('✅'); // Confirmación
-
+      await m.react("✅");
     } catch (e) {
-      await client.sendMessage(
-        m.chat,
-        { text: `✰ Error en el menú:\n${e}` },
-        { quoted: m }
-      );
+      await client.sendMessage(m.chat, { text: `✰ Error en el menú:\n${e}` }, { quoted: m });
     }
-  }
+  },
 };
 
 
