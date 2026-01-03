@@ -4,22 +4,21 @@ module.exports = {
   category: "owner",
   isGroup: true,
   botAdmin: true,
-  isOwner: true, // esto hace que el main valide con global.isOwner
+  isOwner: true,
 
   run: async (client, m, args) => {
-    // Verificación de usuario objetivo
     if (!m.mentionedJid?.[0] && !m.quoted) {
-      return m.reply("⚠️ Etiqueta o responde al usuario que quieres expulsar.");
+      return m.reply("> ✰ Etiqueta o responde al usuario que quieres expulsar.");
     }
 
     const user = m.mentionedJid?.[0] || m.quoted.sender;
 
     try {
       await client.groupParticipantsUpdate(m.chat, [user], "remove");
-      m.reply("👢 Usuario expulsado con el poder de la creadora.");
+      m.reply("> ✰ Usuario expulsado con el poder de la creadora.");
     } catch (e) {
       console.error(e);
-      m.reply("❌ No se pudo expulsar al usuario.");
+      m.reply("> ✰ No se pudo expulsar al usuario.");
     }
   }
 };
