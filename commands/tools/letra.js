@@ -12,10 +12,9 @@ module.exports = {
 
   run: async (client, m, args) => {
     try {
-      const emoji = "✨";
 
       let text = args.join(" ") || (m.quoted && m.quoted.text) || "";
-      if (!text) return client.reply(m.chat, `${emoji} Por favor, ingresa el texto que quieres transformar.`, m);
+      if (!text) return client.reply(m.chat, `> ✰ Por favor, ingresa el texto que quieres transformar.`, m);
 
       const map = {
         'a': 'ᥲ', 'b': 'ᑲ', 'c': 'ᥴ', 'd': 'ძ', 'e': 'ᥱ', 'f': '𝖿',
@@ -30,12 +29,12 @@ module.exports = {
       await m.react("✨");
       await client.sendMessage(
         m.chat,
-        { text: `✧ Texto transformado:\n\n${transformed}` },
+        { text: `> ✧ Texto transformado:\n\n${transformed}` },
         { quoted: m }
       );
     } catch (err) {
       console.error(err);
-      await client.reply(m.chat, "❌ Ocurrió un error al transformar el texto.", m);
+      await client.reply(m.chat, "> ✰ Ocurrió un error al transformar el texto.", m);
     }
   },
 };
