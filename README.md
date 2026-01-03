@@ -21,8 +21,8 @@ Es posible que durante este tiempo se presenten algunos errores, los cuales ser√
 ```bash
 apt install git -y
 apt install nodejs -y
-git clone https://github.com/itsmiaa-official/China-Lite
-cd China-Lite
+git clone https://github.com/itsmiaa-official/Mitsuki-Lite
+cd Mitsuki-Lite
 yarn install
 npm install
 node index.
