@@ -14,20 +14,16 @@ module.exports = {
       const groupMetadata = await client.groupMetadata(m.chat);
       const participants = groupMetadata.participants;
 
-      // Emoji personalizado o por defecto
       const customEmoji = global.db.data.chats[m.chat]?.customEmoji || '🍫';
 
-      // React con el emoji
-      if (client.relayMessage) m.react?.(customEmoji); // Si tu bot tiene m.react
+      if (client.relayMessage) m.react?.(customEmoji);
 
-      // Verificar permisos del usuario
       const senderIsAdmin = participants.find(p => p.id === m.sender)?.admin || false;
       const isOwner = global.owner.includes(m.sender.split('@')[0]);
       if (!senderIsAdmin && !isOwner) {
-        return m.reply('❌ Solo administradores pueden usar este comando');
+        return m.reply('> ✰ Solo administradores pueden usar este comando');
       }
 
-      // Mensaje opcional
       const userMessage = args.join(' ') || '';
       const infoMsg = userMessage ? `*» INFO :* ${userMessage}` : '';
       let text = `*!  MENCION GENERAL  !*\n  *PARA ${participants.length} MIEMBROS* 🗣️\n\n${infoMsg}\n\n╭ ┄ 𝅄 ۪꒰ \`⡞᪲=͟͟͞${namebot} ≼᳞ׄ\` ꒱ ۟ 𝅄 ┄\n`;
@@ -38,11 +34,10 @@ module.exports = {
 
       text += `╰⸼ ┄ ┄ ┄ ─ ꒰  ׅ୭ *${version}* ୧ ׅ ꒱ ┄ ─ ┄ ⸼`;
 
-      // Enviar mensaje mencionando a todos
       await client.sendMessage(m.chat, { text, mentions: participants.map(p => p.id) });
     } catch (err) {
       console.error(err);
-      m.reply('❌ Ocurrió un error al etiquetar a todos');
+      m.reply('> ✰ Ocurrió un error al etiquetar a todos');
     }
   }
 };
