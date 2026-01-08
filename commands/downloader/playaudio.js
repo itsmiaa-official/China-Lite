@@ -1,6 +1,117 @@
 const fetch = require("node-fetch");
 const yts = require("yt-search");
 const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
+const { exec } = require("child_process");
+
+const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/;
+
+module.exports = {
+  command: ["playaudio", "play"],
+  description: "Descarga audio de YouTube como nota de voz",
+  category: "downloader",
+  run: async (client, m, args) => {
+    try {
+      if (!args.join(" ").trim()) {
+        return client.sendMessage(
+          m.chat,
+          { text: "🔔 *Escribe el nombre o link del audio.*" },
+          { quoted: m }
+        );
+      }
+
+      await client.sendMessage(
+        m.chat,
+        { text: "🎧 Buscando tu audio..." },
+        { quoted: m }
+      );
+
+      const text = args.join(" ");
+      const videoIdMatch = text.match(youtubeRegexID);
+
+      const search = await yts(
+        videoIdMatch ? "https://youtu.be/" + videoIdMatch[1] : text
+      );
+
+      const video = videoIdMatch
+        ? search.videos.find(v => v.videoId === videoIdMatch[1])
+        : search.videos[0];
+
+      if (!video) {
+        return client.sendMessage(
+          m.chat,
+          { text: "❌ *No se encontraron resultados.*" },
+          { quoted: m }
+        );
+      }
+
+      const { title, url } = video;
+
+      await client.sendMessage(
+        m.chat,
+        { text: `🎶 *Descargando:* ${title}` },
+        { quoted: m }
+      );
+
+      // 🔽 Obtener link MP3
+      const res = await fetch(
+        `https://api.vreden.my.id/api/v1/download/youtube/audio?url=${url}&quality=200`
+      );
+      const json = await res.json();
+
+      if (!json.result?.download?.url)
+        throw "No se pudo obtener el audio.";
+
+      // 📁 Rutas temporales
+      const mp3Path = path.join(__dirname, `audio_${Date.now()}.mp3`);
+      const oggPath = path.join(__dirname, `audio_${Date.now()}.ogg`);
+
+      // ⬇️ Descargar MP3
+      const audioRes = await axios.get(json.result.download.url, {
+        responseType: "arraybuffer"
+      });
+      fs.writeFileSync(mp3Path, audioRes.data);
+
+      // 🔄 Convertir a OPUS (nota de voz)
+      await new Promise((resolve, reject) => {
+        exec(
+          `ffmpeg -y -i "${mp3Path}" -c:a libopus -b:a 96k "${oggPath}"`,
+          (err) => {
+            if (err) reject(err);
+            else resolve();
+          }
+        );
+      });
+
+      // 🎤 Enviar como NOTA DE VOZ
+      await client.sendMessage(
+        m.chat,
+        {
+          audio: fs.readFileSync(oggPath),
+          mimetype: "audio/ogg; codecs=opus",
+          ptt: true
+        },
+        { quoted: m }
+      );
+
+      // 🧹 Limpiar archivos
+      fs.unlinkSync(mp3Path);
+      fs.unlinkSync(oggPath);
+
+    } catch (err) {
+      await client.sendMessage(
+        m.chat,
+        { text: `❌ Error:\n${err}` },
+        { quoted: m }
+      );
+    }
+  }
+};
+
+/*const fetch = require("node-fetch");
+const yts = require("yt-search");
+const axios = require("axios");
 
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/;
 
@@ -121,7 +232,9 @@ function formatViews(views) {
   if (views >= 1e3) return `${(views / 1e3).toFixed(1)}K (${views.toLocaleString()})`;
   return views.toString();
 }
+*/
 
+//────୨ৎ────
 
 /*const fetch = require("node-fetch");
 const yts = require("yt-search");
