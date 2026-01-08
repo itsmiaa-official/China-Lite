@@ -98,7 +98,7 @@ module.exports = {
         {
           audio: Buffer.from(audioRes.data),
           mimetype: "audio/mpeg",
-          ptt: false
+          ptt: true
         },
         { quoted: m }
       );
