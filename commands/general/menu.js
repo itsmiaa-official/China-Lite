@@ -1,58 +1,4 @@
-const fs = require("fs");
 
-module.exports = {
-  command: ["menu", "menú", "help", "comandos", "commands"],
-  description: "Muestra todos los comandos del bot en estilo tarjeta",
-  category: "general",
-  run: async (client, m, args, { prefix: _p }) => {
-    try {
-
-      const username = m.pushName || (await client.getName(m.sender)) || m.sender.split("@")[0];
-
-      const menuImages = ["menu.jpg", "menu2.jpg", "menu3.jpg"];
-      const existingImages = menuImages.filter(img => fs.existsSync(`./src/${img}`));
-      const menuImage = fs.readFileSync(`./src/${existingImages[Math.floor(Math.random() * existingImages.length)]}`);
-
-      const txt = `
-> ✰ 𝖧𝗈𝗅𝖺 𝖲𝗈𝗒 *${namebot}*, 𝖤𝗌𝗍𝖺 𝖾𝗌 𝗆𝗂 𝗅𝗂𝗌𝗍𝖺 𝖽𝖾 𝖼𝗈𝗆𝖺𝗇𝖽𝗈𝗌...
-  
-⌯ ᤳ݄፞🌷 \`𝖢𝗋𝖾𝖺𝖽𝗈𝗋𝖺\` : *@its.chinitaaa_*
-⌯ ᤳ݄፞🌷 \`𝖴𝗌𝗎𝖺𝗋𝗂𝗈\` : *${username}*
-⌯ ᤳ݄፞🌷 \`𝖵𝖾𝗋𝗌𝗂𝗈𝗇\` : *${version}*
-⌯ ᤳ݄፞🌷 \`𝖬𝗈𝗍𝗈𝗋\` : *𝖡ᥲіᥣᥱᥡs*
-
-> • 𝖲𝗈𝗅𝗂𝖼𝗂𝗍𝖺 𝖵𝖾𝗋 𝗅𝖺𝗌 𝗋𝖾𝗀𝗅𝖺𝗌 𝖽𝖾𝗅 𝖻𝗈𝗍 𝖼𝗈𝗇 𝖾𝗅 𝖼𝗈𝗆𝖺𝗇𝖽𝗈 *#reglas*.
-
-˚ ₊ ‧ ୨🌷୧  — \`『 𝐀𝐍𝐈𝐌𝐄 』\` 
-... (todo tu menú sigue igual) ...
-> ${namebot} | ${author}
-      `.trim();
-
-      await client.sendMessage(
-        m.chat,
-        {
-          image: menuImage,
-          caption: txt,
-          footer: "💖 ¡Gracias por usar el bot! 💖",
-          templateButtons: [
-            { index: 1, urlButton: { displayText: "📸 Instagram", url: "https://instagram.com/its.chinitaaa_" } },
-            { index: 2, urlButton: { displayText: "📢 Canal", url: "https://chat.whatsapp.com/tuCanalAqui" } }
-          ],
-          contextInfo: {
-            mentionedJid: [m.sender],
-            forwardingScore: 1,
-            isForwarded: true
-          }
-        },
-        { quoted: m }
-      );
-    } catch (e) {
-      await client.sendMessage(m.chat, { text: `✰ Error en el menú:\n${e}` }, { quoted: m });
-    }
-  },
-};
-
-/*
 const fs = require("fs");
 
 module.exports = {
@@ -193,4 +139,3 @@ module.exports = {
     }
   },
 };
-*/
