@@ -1,6 +1,5 @@
 const fs = require("fs")
 const { prepareWAMessageMedia, generateWAMessageFromContent } = require("@whiskeysockets/baileys")
-const { getBotVisual } = require("../subbotManager")
 
 function formatUptime(seconds = 0) {
   seconds = Math.floor(seconds)
@@ -23,9 +22,7 @@ module.exports = {
   run: async (client, m) => {
     try {
       const from = m.chat
-      const visual = getBotVisual(client)
-
-      const identity = visual?.isSubBot ? "Sub-Bot" : "Principal"
+      
       const name = visual?.name || global.namebot || "Bot"
       const banner = visual?.banner
 
